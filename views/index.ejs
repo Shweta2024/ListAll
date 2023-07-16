@@ -11,25 +11,25 @@
         <div>
             <form action="/" method="post">
                 <label>GitHub Username</label>
-                <input type="text" id="name" name="userName" required="true">
+                <input type="text" id="name" name="username" required="true">
                 <button type="submit">Submit</button>
             </form>
         </div>
 
 
         <div>
-            <%for (let i = 0; i < repositoryList.length; i++){%> 
-                <h2><%=repositoryList[i].name%></h2>
+            <%for (let index = 0; index < repositoryList.length; index++){%> 
+                <h2>name : <%=repositoryList[index][0]%></h2>
                 <div>
                     <ul>
                         <li>
-                            <h3> Repository's URL: <a href=<%=repositoryList[i].url%>> Link </a></h3>
+                            <h3> Repository's URL: <a href='<%=repositoryList[index][1]%>'> Link </a></h3>
                         </li>
                         <li>
-                            <h3> Fork Count: <%=repositoryList[i].forks%></h3>
+                            <h3> Fork Count: <%=repositoryList[index][2]%></h3>
                         </li>
                         <li>
-                            <h3> Star Count: <%=repositoryList[i].stargazers_count%></h3>
+                            <h3> Star Count: <%=repositoryList[index][3]%></h3>
                         </li>
                     </ul>
                 </div>
