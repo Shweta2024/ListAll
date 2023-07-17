@@ -41,7 +41,7 @@ npm i
 ```
 
 ### Step 3: Create a ```.env``` file and add PAT(Personal Access Token) to it.
-- You can generate the PAT from GitHub by following this doc : [link]()
+- You can generate the PAT from GitHub by following this doc : [Managing PAT](https://docs.github.com/en/enterprise-server@3.6/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 
 ### Step 4: Start the Server 
 
