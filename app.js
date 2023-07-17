@@ -9,6 +9,7 @@ const PORT = 5000 || process.env.PORT
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
 app.set('view engine', 'ejs')
 
 
@@ -19,6 +20,9 @@ async function getUserRepositories(username, token) {
             Authorization: `Bearer ${token}`,
         },
     })
+    if (!response.ok) {
+        return [];
+    }
     const result = await response.json()
     return result;
 }
@@ -31,6 +35,10 @@ async function hadContributed(username, repoName, token) {
             Authorization: `Bearer ${token}`,
         },
     })
+    if (!response.ok) {
+        return false
+    }
+
     const result = await response.json()
 
     // checking if the user is present in the contributor list of the repository
@@ -57,7 +65,7 @@ app.post('/', async (req, res) => {
 
     const result = await getUserRepositories(username, process.env.PAT)
 
-    // populating repositoryList with the name, link, fork count and start count of the repository to which user has contributed
+    // populating repositoryList with the name, description, link, fork count and start count of the repository to which user has contributed
     for (let index = 0; index < result.length; index++) {
         const isContributor = await hadContributed(username, result[index].name, process.env.PAT)
 
@@ -65,6 +73,7 @@ app.post('/', async (req, res) => {
             repositoryList.push([
                 result[index].name,
                 result[index].html_url,
+                result[index].description,
                 result[index].forks,
                 result[index].stargazers_count
             ])

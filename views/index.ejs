@@ -4,37 +4,33 @@
         <title>
             ListAll
         </title>
+        <link rel="stylesheet" href="/css/styles.css">
     </head>
 
     <body>
-        <h1>Get the list of all the Repositories to which you have contributed:- </h1>
+        <h1 id="heading" class="box">ListALL</h1>
+        <p class="description">Get the list of all the Repositories to which you have contributed!</p>
         <div>
             <form action="/" method="post">
-                <label>GitHub Username</label>
-                <input type="text" id="name" name="username" required="true">
-                <button type="submit">Submit</button>
+                <div class="username-input">
+                    <input type="text" id="username" name="username" required="true" placeholder="GitHub Username">
+                    <button type="submit" class="btn">Get List</button>
+                </div>
             </form>
         </div>
-
-
-        <div>
-            <%for (let index = 0; index < repositoryList.length; index++){%> 
-                <h2>name : <%=repositoryList[index][0]%></h2>
-                <div>
-                    <ul>
-                        <li>
-                            <h3> Repository's URL: <a href='<%=repositoryList[index][1]%>'> Link </a></h3>
-                        </li>
-                        <li>
-                            <h3> Fork Count: <%=repositoryList[index][2]%></h3>
-                        </li>
-                        <li>
-                            <h3> Star Count: <%=repositoryList[index][3]%></h3>
-                        </li>
-                    </ul>
-                </div>
-                <br>
-            <%}%>
+        
+        <div class="card-container">
+            <%for (let index = 0; index < repositoryList.length; index++){%>
+            <div class="repository-card">
+                <h2 class="repo-name"><%=repositoryList[index][0]%></h2>
+                <p class="repo-link"> Repository's URL: <a href='<%=repositoryList[index][1]%>'> Link </a></p>
+                <%if(repositoryList[index][2] != null){%>
+                    <p class="repo-stats">Description: <%=repositoryList[index][2]%></p>
+                <%}%>
+                <p class="repo-stats"> Fork Count: <%=repositoryList[index][3]%></p>
+                <p class="repo-stats"> Star Count: <%=repositoryList[index][4]%></p>
+            </div><%}%>
         </div>
-        </body>
+        
+    </body>
 </html>
