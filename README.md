@@ -49,7 +49,7 @@ npm i
 
 ```
 
-nodemon app.js
+node app.js
 
 ```
 
